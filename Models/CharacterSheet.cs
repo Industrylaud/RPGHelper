@@ -11,6 +11,7 @@ namespace RPGHelper.Models
     {
         public int Id { get; set; }
 
+        [Required]
         [ForeignKey("ApplicationUser")]
         public int ApplicationUserId { get; set; }
         public ApplicationUser User { get; set; }
