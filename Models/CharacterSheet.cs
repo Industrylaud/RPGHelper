@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ namespace RPGHelper.Models
     {
         public int Id { get; set; }
 
+        [ForeignKey("ApplicationUser")]
+        public int ApplicationUserId { get; set; }
+        public ApplicationUser User { get; set; }
 
         //basic info
         [Required]
@@ -40,5 +44,7 @@ namespace RPGHelper.Models
         public int Hp { get; set; }
 
         public int HpTemp { get; set; }
+
+        public string Notes { get; set; }
     }
 }
