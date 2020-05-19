@@ -19,7 +19,7 @@ namespace RPGHelper.Controllers
             this.signInManager = signInManager;
         }
 
-        public IActionResult Index()
+        public IActionResult CreateSheet()
         {
             return View();
         }
