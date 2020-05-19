@@ -7,6 +7,13 @@ namespace RPGHelper.Models
 {
     public class SqlRpgRepository : ISqlRpgRepository
     {
+        private readonly AppDbContext context;
+
+        public SqlRpgRepository(AppDbContext context)
+        {
+            this.context = context;
+        }
+
         public CharacterSheet Add(CharacterSheet characterSheet)
         {
             throw new NotImplementedException();
