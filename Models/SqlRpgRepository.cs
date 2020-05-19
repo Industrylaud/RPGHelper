@@ -21,14 +21,18 @@ namespace RPGHelper.Models
             return characterSheet;
         }
 
-        public CharacterSheet Edit(CharacterSheet characterSheet)
+        public CharacterSheet Edit(CharacterSheet characterSheetChanges)
         {
-            throw new NotImplementedException();
+            var characterSheet = Context.CharacterSheets.Attach(characterSheetChanges);
+            characterSheet.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Context.SaveChanges();
+            return characterSheetChanges;
         }
 
         public CharacterSheet Get(int id)
         {
-            throw new NotImplementedException();
+            CharacterSheet characterSheet = Context.CharacterSheets.Find(id);
+            return characterSheet;
         }
 
         public IEnumerable<CharacterSheet> GetAllSheets(string id)

@@ -13,7 +13,7 @@ namespace RPGHelper.Models
 
         CharacterSheet Get(int id);
 
-        IEnumerable<CharacterSheet> GetAllSheets(int id);
+        IEnumerable<CharacterSheet> GetAllSheets(string id);
 
         CharacterSheet Edit(CharacterSheet characterSheet);
     }
