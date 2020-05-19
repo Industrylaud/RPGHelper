@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RPGHelper.Models
 {
-    interface ISqlRpgRepository
+    public interface ISqlRpgRepository
     {
         CharacterSheet Add(CharacterSheet characterSheet);
 
