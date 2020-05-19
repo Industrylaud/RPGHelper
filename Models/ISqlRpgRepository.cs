@@ -9,11 +9,11 @@ namespace RPGHelper.Models
     {
         CharacterSheet Add(CharacterSheet characterSheet);
 
-        CharacterSheet Remove(int Id);
+        CharacterSheet Remove(int id);
 
-        CharacterSheet Get(int Id);
+        CharacterSheet Get(int id);
 
-        IEnumerable<CharacterSheet> GetAllSheets();
+        IEnumerable<CharacterSheet> GetAllSheets(int id);
 
         CharacterSheet Edit(CharacterSheet characterSheet);
     }

@@ -26,19 +26,25 @@ namespace RPGHelper.Models
             throw new NotImplementedException();
         }
 
-        public CharacterSheet Get(int Id)
+        public CharacterSheet Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CharacterSheet> GetAllSheets()
+        public IEnumerable<CharacterSheet> GetAllSheets(string id)
         {
-            throw new NotImplementedException();
+            return Context.CharacterSheets.Where(e => e.ApplicationUserId.Equals(id));
         }
 
-        public CharacterSheet Remove(int Id)
+        public CharacterSheet Remove(int id)
         {
-            throw new NotImplementedException();
+            CharacterSheet characterSheet = Context.CharacterSheets.Find(id);
+            if(characterSheet != null)
+            {
+                Context.CharacterSheets.Remove(characterSheet);
+                Context.SaveChanges();
+            }
+            return characterSheet;
         }
     }
 }
