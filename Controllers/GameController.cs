@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,13 +14,13 @@ namespace RPGHelper.Controllers
     [Authorize]
     public class GameController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
+        //private readonly Microsoft.AspNet.Identity.UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly ISqlRpgRepository RpgRepository;
 
-        public GameController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ISqlRpgRepository rpgRepository)
+        public GameController(SignInManager<ApplicationUser> signInManager, ISqlRpgRepository rpgRepository)
         {
-            this.userManager = userManager;
+            //this.userManager = userManager;
             this.signInManager = signInManager;
             this.RpgRepository = rpgRepository;
         }
@@ -37,6 +38,8 @@ namespace RPGHelper.Controllers
             {
                 CharacterSheet newCharacterSheet = new CharacterSheet
                 {
+                    ApplicationUserId = User.Identity.GetUserId(),
+
                     Name = model.Name,
                     Level = model.Level,
                     Class = model.Class,
