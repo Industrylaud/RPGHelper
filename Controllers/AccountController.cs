@@ -12,6 +12,7 @@ using RPGHelper.ViewModels;
 
 namespace RPGHelper.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
