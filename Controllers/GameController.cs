@@ -64,5 +64,19 @@ namespace RPGHelper.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ViewResult SheetsList()
+        {
+            var model = RpgRepository.GetAllSheets(User.Identity.GetUserId());
+            return View(model);
+        }
+
+        public IActionResult SheetDelete(int id)
+        {
+            CharacterSheet characterSheet = RpgRepository.Get(id);
+            RpgRepository.Remove(id);
+            return RedirectToAction("SheetList");
+        }
     }
 }
