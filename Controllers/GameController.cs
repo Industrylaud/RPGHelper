@@ -78,5 +78,24 @@ namespace RPGHelper.Controllers
             RpgRepository.Remove(id);
             return RedirectToAction("SheetList");
         }
+
+        [HttpGet]
+        public IActionResult SheetDetails(int? id)
+        {
+            CharacterSheet characterSheet = RpgRepository.Get(id.Value);
+
+            if(characterSheet == null)
+            {
+                Response.StatusCode = 404;
+                return View("CharacterSheetNotFound", id.Value);
+            }
+
+            SheetDetailsViewModel sheetDetailsViewModel = new SheetDetailsViewModel()
+            {
+                characterSheet = characterSheet,
+                pageTitle = "Character Sheet Details"
+            };
+            return View(sheetDetailsViewModel);
+        }
     }
 }
