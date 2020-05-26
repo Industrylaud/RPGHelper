@@ -99,7 +99,7 @@ namespace RPGHelper.Controllers
                 };
                 return View(sheetDetailsViewModel);
             }
-            return RedirectToAction("SheetsDetails");
+            return RedirectToAction("SheetsList");
         }
     }
 }
