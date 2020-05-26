@@ -31,8 +31,7 @@ namespace RPGHelper.Models
 
         public CharacterSheet Get(int id)
         {
-            CharacterSheet characterSheet = Context.CharacterSheets.Find(id);
-            return characterSheet;
+            return Context.CharacterSheets.Find(id);
         }
 
         public IEnumerable<CharacterSheet> GetAllSheets(string id)
