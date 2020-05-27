@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RPGHelper.Models
 {
-    public class MusicList
+    public class MusicTrack
     {
         //foreign id
         [Required]
@@ -17,6 +17,8 @@ namespace RPGHelper.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
+        public string Category2 { get; set; }
+        public string Category3 { get; set; }
         public string URL { get; set; }
     }
 }

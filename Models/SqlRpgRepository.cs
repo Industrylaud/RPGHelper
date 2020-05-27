@@ -21,6 +21,13 @@ namespace RPGHelper.Models
             return characterSheet;
         }
 
+        public MusicTrack Add(MusicTrack musicTrack)
+        {
+            Context.MusicTracks.Add(musicTrack);
+            Context.SaveChanges();
+            return musicTrack;
+        }
+
         public CharacterSheet Edit(CharacterSheet characterSheetChanges)
         {
             var characterSheet = Context.CharacterSheets.Attach(characterSheetChanges);
@@ -39,6 +46,16 @@ namespace RPGHelper.Models
             return Context.CharacterSheets.Where(e => e.ApplicationUserId.Equals(id));
         }
 
+        public IEnumerable<MusicTrack> GetByCategory(string category, string id)
+        {
+            return Context.MusicTracks.Where(e => e.ApplicationUserId.Equals(id)).Where(e => e.Category.Equals(category) || (e.Category2.Equals(category) || e.Category3.Equals(category)));
+        }
+
+        public MusicTrack GetMusic(int id)
+        {
+            return Context.MusicTracks.Find(id);
+        }
+
         public CharacterSheet Remove(int id)
         {
             CharacterSheet characterSheet = Context.CharacterSheets.Find(id);
@@ -48,6 +65,17 @@ namespace RPGHelper.Models
                 Context.SaveChanges();
             }
             return characterSheet;
+        }
+
+        public MusicTrack RemoveMusic(int id)
+        {
+            MusicTrack musicTrack = Context.MusicTracks.Find(id);
+            if(musicTrack != null)
+            {
+                Context.MusicTracks.Remove(musicTrack);
+                Context.SaveChanges();
+            }
+            return musicTrack;
         }
     }
 }

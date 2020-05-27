@@ -8,9 +8,22 @@ namespace RPGHelper.ViewModels
 {
     public class AddMusicViewModel
     {
-        public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
+        
+        [Display(Name = "Category")]
         public string Category { get; set; }
+
+        [Display(Name = "Category 2")]
+        public string Category2 { get; set; }
+
+        [Display(Name = "Category 3")]
+        public string Category3 { get; set; }
+       
+        [Required]
+        [Display(Name = "URL")]
         public string URL { get; set; }
     }
 }

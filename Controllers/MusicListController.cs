@@ -11,33 +11,38 @@ using RPGHelper.ViewModels;
 
 namespace RPGHelper.Controllers
 {
+    [Authorize]
     public class MusicListController : Controller
     {
         private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly IMusicList MusicList;
+        private readonly ISqlRpgRepository RpgRepository;
 
-        public MusicListController(SignInManager<ApplicationUser> signInManager, IMusicList musicList )
+        public MusicListController(SignInManager<ApplicationUser> signInManager, ISqlRpgRepository RpgRepository)
         {
-            this.MusicList = musicList; 
+            this.RpgRepository = RpgRepository; 
             this.signInManager = signInManager;
         }
+        [HttpGet]
         public IActionResult AddMusic()
         {
             return View();
         }
+        [HttpPost]
         public IActionResult AddMusic(AddMusicViewModel model)
         {
             if (ModelState.IsValid)
             {
-                MusicList newAddMusic = new MusicList
+                MusicTrack newAddMusic = new MusicTrack
                 {
                     ApplicationUserId = User.Identity.GetUserId(),
 
                     Name = model.Name,
                     Category = model.Category,
+                    Category2 = model.Category2,
+                    Category3 = model.Category3,
                     URL = model.URL
                 };
-                MusicList.Add(newAddMusic);
+                RpgRepository.Add(newAddMusic);
                 return RedirectToAction("Details", new { id = newAddMusic.Id });
             }
             return View();
