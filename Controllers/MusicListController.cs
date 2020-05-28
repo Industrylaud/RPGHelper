@@ -43,7 +43,7 @@ namespace RPGHelper.Controllers
                     URL = model.URL
                 };
                 RpgRepository.Add(newAddMusic);
-                return RedirectToAction("Details", new { id = newAddMusic.Id });
+                return RedirectToAction("AddMusic");
             }
             return View();
         }
