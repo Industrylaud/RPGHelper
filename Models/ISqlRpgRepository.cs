@@ -16,5 +16,13 @@ namespace RPGHelper.Models
         IEnumerable<CharacterSheet> GetAllSheets(string id);
 
         CharacterSheet Edit(CharacterSheet characterSheet);
+       
+        MusicTrack Add(MusicTrack musicTrack);
+
+        MusicTrack RemoveMusic(int id);
+
+        MusicTrack GetMusic(int id);
+
+        IEnumerable<MusicTrack> GetByCategory(string category, string id);
     }
 }
