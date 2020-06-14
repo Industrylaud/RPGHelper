@@ -138,5 +138,38 @@ namespace RPGHelper.Controllers
             Response.StatusCode = 404;
             return View("CharacterSheetNotFound", id);
         }
+
+        [HttpPost]
+        public IActionResult Edit(EditSheetViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                CharacterSheet characterSheet = RpgRepository.Get(model.Id);
+                characterSheet.ApplicationUserId = model.ApplicationUserId;
+
+                characterSheet.Name = model.Name;
+                characterSheet.Level = model.Level;
+                characterSheet.Class = model.Class;
+                characterSheet.Personality = model.Personality;
+                characterSheet.Exp = model.Exp;
+
+                characterSheet.Strength = model.Strength;
+                characterSheet.Agility = model.Agility;
+                characterSheet.Condition = model.Condition;
+                characterSheet.Inteligence = model.Inteligence;
+                characterSheet.Wisdom = model.Wisdom;
+                characterSheet.Charisma = model.Charisma;
+
+                characterSheet.ArmorClass = model.ArmorClass;
+                characterSheet.Initative = model.Initative;
+                characterSheet.Hp = model.Hp;
+                characterSheet.HpTemp = model.HpTemp;
+                characterSheet.Notes = model.Notes;
+
+                RpgRepository.Edit(characterSheet);
+                return RedirectToAction("SheetsList");
+            }
+            return View();
+        }
     }
 }
