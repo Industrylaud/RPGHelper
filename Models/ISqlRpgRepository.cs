@@ -14,6 +14,7 @@ namespace RPGHelper.Models
         CharacterSheet Get(int id);
 
         IEnumerable<CharacterSheet> GetAllSheets(string id);
+        IEnumerable<MusicTrack> GetAllMusic(string id);
 
         CharacterSheet Edit(CharacterSheet characterSheet);
        

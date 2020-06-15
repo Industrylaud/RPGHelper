@@ -23,7 +23,7 @@ namespace RPGHelper.ViewModels
         public string Category3 { get; set; }
        
         [Required]
-        [Display(Name = "URL")]
+        [Display(Name = "URL (należy dodać embed po www.youtube.com/)")]
         public string URL { get; set; }
     }
 }
