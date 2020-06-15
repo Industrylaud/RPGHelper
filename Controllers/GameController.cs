@@ -64,5 +64,112 @@ namespace RPGHelper.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ViewResult SheetsList()
+        {
+            var model = RpgRepository.GetAllSheets(User.Identity.GetUserId());
+            return View(model);
+        }
+
+        public IActionResult SheetDelete(int id)
+        {
+            CharacterSheet characterSheet = RpgRepository.Get(id);
+            RpgRepository.Remove(id);
+            return RedirectToAction("SheetsList");
+        }
+
+        [HttpGet]
+        public IActionResult SheetDetails(int? id)
+        {
+            if(id != null)
+            {
+                CharacterSheet characterSheet = RpgRepository.Get(id.Value);
+
+                if (characterSheet == null)
+                {
+                    Response.StatusCode = 404;
+                    return View("CharacterSheetNotFound", id.Value);
+                }
+
+                SheetDetailsViewModel sheetDetailsViewModel = new SheetDetailsViewModel()
+                {
+                    characterSheet = characterSheet,
+                    pageTitle = "Character Sheet Details"
+                };
+                return View(sheetDetailsViewModel);
+            }
+            return RedirectToAction("SheetsList");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            CharacterSheet characterSheet = RpgRepository.Get(id);
+            if(characterSheet != null)
+            {
+                EditSheetViewModel editSheetViewModel = new EditSheetViewModel()
+                {
+                    Id = characterSheet.Id,
+                    ApplicationUserId = characterSheet.ApplicationUserId,
+
+                    Name = characterSheet.Name,
+                    Level = characterSheet.Level,
+                    Class = characterSheet.Class,
+                    Personality = characterSheet.Personality,
+                    Exp = characterSheet.Exp,
+
+                    Strength = characterSheet.Strength,
+                    Agility = characterSheet.Agility,
+                    Condition = characterSheet.Condition,
+                    Inteligence = characterSheet.Inteligence,
+                    Wisdom = characterSheet.Wisdom,
+                    Charisma = characterSheet.Charisma,
+
+                    ArmorClass = characterSheet.ArmorClass,
+                    Initative = characterSheet.Initative,
+                    Hp = characterSheet.Hp,
+                    HpTemp = characterSheet.HpTemp,
+                    Notes = characterSheet.Notes
+                };
+                return View(editSheetViewModel);
+            }
+
+            Response.StatusCode = 404;
+            return View("CharacterSheetNotFound", id);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditSheetViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                CharacterSheet characterSheet = RpgRepository.Get(model.Id);
+                characterSheet.ApplicationUserId = model.ApplicationUserId;
+
+                characterSheet.Name = model.Name;
+                characterSheet.Level = model.Level;
+                characterSheet.Class = model.Class;
+                characterSheet.Personality = model.Personality;
+                characterSheet.Exp = model.Exp;
+
+                characterSheet.Strength = model.Strength;
+                characterSheet.Agility = model.Agility;
+                characterSheet.Condition = model.Condition;
+                characterSheet.Inteligence = model.Inteligence;
+                characterSheet.Wisdom = model.Wisdom;
+                characterSheet.Charisma = model.Charisma;
+
+                characterSheet.ArmorClass = model.ArmorClass;
+                characterSheet.Initative = model.Initative;
+                characterSheet.Hp = model.Hp;
+                characterSheet.HpTemp = model.HpTemp;
+                characterSheet.Notes = model.Notes;
+
+                RpgRepository.Edit(characterSheet);
+                return RedirectToAction("SheetsList");
+            }
+            return View();
+        }
     }
 }
