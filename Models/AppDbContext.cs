@@ -15,7 +15,11 @@ namespace RPGHelper.Models
 
         }
 
+        
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<CharacterSheet> CharacterSheets { get; set; }
+
+        public DbSet<MusicTrack> MusicTracks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

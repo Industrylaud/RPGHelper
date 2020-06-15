@@ -1,0 +1,30 @@
+﻿@model AddMusicViewModel
+
+@{
+    ViewBag.Title = "Add music";
+}
+<div class="row">
+    <div class="col-md-10">
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+
+                <label asp-for="Category"></label>
+                <input asp-for="Category" class="form-control" />
+                
+                <label asp-for="Category2"></label>
+                <input asp-for="Category2" class="form-control" />
+                
+                <label asp-for="Category3"></label>
+                <input asp-for="Category3" class="form-control" />
+
+                <label asp-for="URL"></label>
+                <input asp-for="URL" class="form-control" />
+
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>

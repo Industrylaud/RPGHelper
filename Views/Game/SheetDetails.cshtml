@@ -1,0 +1,49 @@
+﻿@model SheetDetailsViewModel
+
+@{ 
+    ViewBag.Title = "Character Sheet Details";
+}
+
+    <div class="row justify-content-center m-3">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-header">
+                    <h1>@Model.characterSheet.Name</h1>
+                </div>
+
+                <div class="card-body text-center">
+                        <h2>Basic Informations</h2><br />
+                        <h4>Level: @Model.characterSheet.Level</h4>
+                        <h4>Class: @Model.characterSheet.Class</h4>
+                        <h4>Personality: @Model.characterSheet.Personality</h4>
+                        <h4>Exp: @Model.characterSheet.Exp</h4><br /><br />
+
+                        <h2>Statistics</h2><br />
+                        <h4>Strength: @Model.characterSheet.Strength</h4>
+                        <h4>Agility: @Model.characterSheet.Agility</h4>
+                        <h4>Condition: @Model.characterSheet.Condition</h4>
+                        <h4>Inteligence: @Model.characterSheet.Inteligence</h4>
+                        <h4>Wisdom: @Model.characterSheet.Wisdom</h4>
+                        <h4>Charisma: @Model.characterSheet.Charisma</h4><br /><br />
+
+                        <h2>Other Informations</h2><br />
+                        <h4>Armor Class: @Model.characterSheet.ArmorClass</h4>
+                        <h4>Initative: @Model.characterSheet.Initative</h4>
+                        <h4>Hp: @Model.characterSheet.Hp</h4>
+                        <h4>HpTemp: @Model.characterSheet.HpTemp</h4>
+                        <h4>Notes:</h4><br />@Model.characterSheet.Notes
+                </div>
+
+                <div class="card-footer text-center">
+                    <a asp-controller="Game" asp-action="SheetsList" 
+                       class="btn btn-primary">Back</a>
+                    <a asp-action="Edit" asp-controller="Game"
+                       asp-route-id="@Model.characterSheet.Id"
+                       class="btn btn-primary m-1">Edit</a>
+                    <a asp-action="SheetDelete" asp-controller="Game"
+                       asp-route-id="@Model.characterSheet.Id"
+                       class="btn btn-danger m-1">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>

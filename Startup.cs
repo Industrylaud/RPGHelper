@@ -33,11 +33,8 @@ namespace RPGHelper
             services.AddDbContextPool<AppDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("RpgDbConection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            {
-                options.Password.RequiredLength = 8;
-                options.Password.RequiredUniqueChars = 2;
-            }).AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -50,6 +47,8 @@ namespace RPGHelper
                 options.EnableEndpointRouting = false;
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
+
+            services.AddScoped<ISqlRpgRepository, SqlRpgRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
