@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using RPGHelper.Models;
 using RPGHelper.ViewModels;
@@ -46,6 +47,13 @@ namespace RPGHelper.Controllers
                 return RedirectToAction("AddMusic");
             }
             return View();
+        }
+ 
+        [HttpGet]
+        public ViewResult MusicList()
+        {
+            var model = RpgRepository.GetAllMusic(User.Identity.GetUserId());
+            return View(model);
         }
     }
 }

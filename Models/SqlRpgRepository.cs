@@ -55,6 +55,10 @@ namespace RPGHelper.Models
         {
             return Context.MusicTracks.Find(id);
         }
+        public IEnumerable<MusicTrack> GetAllMusic(string id)
+        {
+            return Context.MusicTracks.Where(e => e.ApplicationUserId.Equals(id));
+        }
 
         public CharacterSheet Remove(int id)
         {

@@ -1,0 +1,37 @@
+﻿@using System.Diagnostics
+@model IEnumerable<MusicTrack>
+
+@{
+    ViewBag.Title = "Music list";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="overflow-auto" style="height:800px" >
+            @foreach (var track in Model)
+            {
+
+                <a class="list-group">Name: @track.Name Category: @track.Category</a>
+                <button onclick="document.getElementById('youtube').src='@track.URL'" class="btn btn-primary">Play</button>
+
+            }
+        </div>
+            <div class="col-sm" id="player">
+                <iframe id="youtube" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" autoplay="1"></iframe>
+            </div>
+        </div>
+</div>
+
+
+
+@*<div class="card m-3" style="min-width:18rem; max-width:30.5%">
+        <div class="list-group-item">
+            <h3>@track.Name</h3>
+        </div>
+        <div class="card-body">
+            <h4>Category: @track.Category</h4>
+            <h4>Category: @track.Category2</h4>
+            <h4>Category: @track.Category3</h4>
+
+        </div>
+    </div>*@
