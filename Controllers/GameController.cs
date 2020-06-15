@@ -60,7 +60,7 @@ namespace RPGHelper.Controllers
                     Notes = model.Notes   
                 };
                 RpgRepository.Add(newCharacterSheet);
-                return RedirectToAction("Details", new { id = newCharacterSheet.Id });
+                return RedirectToAction("SheetDetails", new { id = newCharacterSheet.Id });
             }
             return View();
         }
