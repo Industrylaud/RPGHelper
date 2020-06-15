@@ -72,6 +72,7 @@ namespace RPGHelper.Controllers
             return View(model);
         }
 
+        [HttpPost]
         public IActionResult SheetDelete(int id)
         {
             CharacterSheet characterSheet = RpgRepository.Get(id);
